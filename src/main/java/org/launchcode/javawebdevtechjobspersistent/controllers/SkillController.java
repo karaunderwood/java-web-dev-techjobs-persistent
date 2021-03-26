@@ -3,6 +3,7 @@ package org.launchcode.javawebdevtechjobspersistent.controllers;
 import org.launchcode.javawebdevtechjobspersistent.models.Employer;
 import org.launchcode.javawebdevtechjobspersistent.models.Skill;
 import org.launchcode.javawebdevtechjobspersistent.models.data.SkillRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,13 +16,14 @@ import java.util.Optional;
 @RequestMapping("skills")
 public class SkillController {
 
+    @Autowired
     private SkillRepository skillRepository;
 
     @GetMapping
     public String index (Model model) {
         model.addAttribute("title", "All Skills");
         model.addAttribute("skills", skillRepository.findAll());
-        return "skills";
+        return "skills/index";
     }
 
     @GetMapping("add")
